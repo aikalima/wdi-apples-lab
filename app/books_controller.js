@@ -10,7 +10,10 @@ bookly.BooksController = function($scope) {
   $scope.cart = [];
 
   $scope.addToCart = function(aBook) {
-    $scope.cart.push(aBook);
+    //Add book only if not already in cart
+    if ($scope.cart.indexOf(aBook) === -1){
+      $scope.cart.push(aBook);
+    }
   }
 
   $scope.clearCart = function() {

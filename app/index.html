@@ -4,6 +4,7 @@
   <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
   <script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
 
   <link href="main.css" rel="stylesheet" type="text/css" />
   <script src ="data.js"></script>
@@ -35,20 +36,25 @@
           </div>
 
           <div class="cart-button">
-            <span class="price">{{book.price | currency}}</span> <button ng-click="addToCart(book)">Add</button>
+            <span class="price">{{book.price | currency}}</span> <input type="submit" ng-click="addToCart(book)" value="Add"></input>
           </div>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 cart">
-          <h2>your cart, items: {{cart.length}}</h2>
+          <h>your cart <ng-pluralize count="cart.length"
+                           when="{'0': 'is empty.',
+                                  'one': 'has one measly item.',
+                                  'other': 'has {} items.'}">
+                        </ng-pluralize>
+          </h4>
           <table class="carttable">
           <tr>
-            <th width='40%'>Title</th><th width='40%'>Author</th><th width='20%'>Price</th>
+            <th width='35%'>Title</th><th width='35%'>Author</th><th width='10%'>#</th><th width='20%'>Price</th>
           </tr>
           <tr ng-repeat="item in cart">
-            <td width='40%'>{{item.title}}</td><td width='40%'>{{item.author}}</td><td width='20%'>{{item.price | currency}}</td>
+            <td width='40%'>{{item.book.title}}</td><td width='40%'>{{item.book.author}}</td><th width='10%'>{{item.count}}</th><td width='20%'>{{item.book.price | currency}}</td>
           </tr>
           <tr class="cart-total">
-            <td colspan=2 width='80%'>Total</td><td width='20%'>{{cartTotal() | currency}}</td>
+            <td colspan=3 width='80%'>Total</td><td width='20%'>{{cartTotal() | currency}}</td>
           </tr>
           </table>
           <div class="btn-group cart-button">

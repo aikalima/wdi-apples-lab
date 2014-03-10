@@ -39,8 +39,13 @@
           </div>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 cart">
-          <h2>your cart, items: {{cart.length}}</h2>
-          <table class="carttable">
+          <h4>your cart <ng-pluralize count="cart.length"
+                           when="{'0': 'is empty.',
+                                  'one': 'has one measly item.',
+                                  'other': 'has {} items.'}">
+                        </ng-pluralize>
+          </h4>
+	  <table class="carttable">
           <tr>
             <th width='40%'>Title</th><th width='40%'>Author</th><th width='20%'>Price</th>
           </tr>

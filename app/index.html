@@ -40,7 +40,7 @@
           </div>
         </div>
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1 cart">
-          <h>your cart <ng-pluralize count="cart.length"
+          <h>your cart <ng-pluralize count="itemCount()"
                            when="{'0': 'is empty.',
                                   'one': 'has one measly item.',
                                   'other': 'has {} items.'}">
